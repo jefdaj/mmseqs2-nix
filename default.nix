@@ -33,7 +33,14 @@ pkgs.stdenv.mkDerivation rec {
     # sha256 = "0hrcky0jc2pn9gh8xsxknkr08fkm1xbmqwhhxq8rdvaygdjw4spw";
   # };
 
-  buildInputs = with pkgs; [ cmake perl zlib unzip ];
+  buildInputs = with pkgs; [
+    cmake
+    perl
+    zlib
+    bzip2
+    unzip
+    llvmPackages.openmp
+  ];
 
   #for when the src is a tarball:
   #   unpackPhase = ''
@@ -47,6 +54,7 @@ pkgs.stdenv.mkDerivation rec {
   postUnpack = ''
     patchShebangs MMseqs2-${version}
   '';
+  # TODO remove AVX2 stuff?
   preConfigure = ''
     cmakeFlags="$cmakeFlags -DCMAKE_BUILD_TYPE=RELEASE -DCMAKE_INSTALL_PREFIX=$out -DHAVE_AVX_EXTENSIONS=0 -DHAVE_AVX2_EXTENSIONS=0"
   '';
