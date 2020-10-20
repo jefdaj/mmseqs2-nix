@@ -40,5 +40,9 @@ BacteriaBench/
 EliTestFiles/
 NCBI_Bacteria_Orfs/
 build.old/
+.vscode/c_cpp_properties.json
 .vscode/
 vsc.code-workspace
+
+# nix
+result
