@@ -2,15 +2,13 @@
 # TODO why isn't the new version being used in sonicparanoid?
 # TODO include a custom check for AVX2 to re-enable it when a user's machine is capable
 # TODO is an old version actually required by sonicparanoid?
+# TODO why is gcc8Stdenv required? maybe it has to match the llvmPackages.openmp version?
 
-{ stdenv
+{ gcc8Stdenv
 , bzip2
 , cmake
 , fetchurl
 , llvmPackages
-# , openmpi
-# , libatomic_ops
-# , perl
 , unzip
 , xxd
 , zlib
@@ -21,13 +19,10 @@
 #   pkgs = import sources.nixpkgs {};
 # in
 
-stdenv.mkDerivation rec {
+gcc8Stdenv.mkDerivation rec {
   name = "mmseqs2-${version}";
 
   # version = "1-c7a89"; # version for sonicparanoid
-  # version = "6-f5a1c"; # latest release version
-  # latest master branch as of march 5
-  # no reason to think a later one won't work
   version = "12-113e3";
 
   src = ./.;
@@ -46,14 +41,11 @@ stdenv.mkDerivation rec {
 
   buildInputs = [
     cmake
-    # perl
     xxd
     zlib
     bzip2.dev
     unzip
     llvmPackages.openmp
-    # libatomic_ops
-    # openmpi
   ];
 
   #for when the src is a tarball:
@@ -68,8 +60,7 @@ stdenv.mkDerivation rec {
   postUnpack = ''
     patchShebangs MMseqs2-${version}
   '';
-  # TODO remove AVX2 stuff?
-#   preConfigure = ''
-#     cmakeFlags="$cmakeFlags -DCMAKE_BUILD_TYPE=RELEASE -DCMAKE_INSTALL_PREFIX=$out -DHAVE_AVX_EXTENSIONS=0 -DHAVE_AVX2_EXTENSIONS=0"
-#   '';
+  # preConfigure = ''
+  #   cmakeFlags="$cmakeFlags -DCMAKE_BUILD_TYPE=RELEASE -DCMAKE_INSTALL_PREFIX=$out"
+  # '';
 }
