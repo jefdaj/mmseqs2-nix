@@ -7,7 +7,7 @@
 , bzip2
 , cmake
 , fetchurl
-# , llvmPackages
+, llvmPackages
 # , openmpi
 # , libatomic_ops
 # , perl
@@ -51,7 +51,7 @@ stdenv.mkDerivation rec {
     zlib
     bzip2.dev
     unzip
-    # llvmPackages.openmp
+    llvmPackages.openmp
     # libatomic_ops
     # openmpi
   ];
