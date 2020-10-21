@@ -3,14 +3,22 @@
 # TODO include a custom check for AVX2 to re-enable it when a user's machine is capable
 # TODO is an old version actually required by sonicparanoid?
 
-# { stdenv, fetchurl, cmake, perl, zlib, unzip }:
+{ stdenv
+, bzip2
+, cmake
+, fetchurl
+, llvmPackages
+, perl
+, unzip
+, zlib
+}:
 
-let
-  sources = import ./nix/sources.nix {};
-  pkgs = import sources.nixpkgs {};
-in
+# let
+#   sources = import ./nix/sources.nix {};
+#   pkgs = import sources.nixpkgs {};
+# in
 
-pkgs.stdenv.mkDerivation rec {
+stdenv.mkDerivation rec {
   name = "mmseqs2-${version}";
 
   # version = "1-c7a89"; # version for sonicparanoid
@@ -33,7 +41,7 @@ pkgs.stdenv.mkDerivation rec {
     # sha256 = "0hrcky0jc2pn9gh8xsxknkr08fkm1xbmqwhhxq8rdvaygdjw4spw";
   # };
 
-  buildInputs = with pkgs; [
+  buildInputs = [
     cmake
     perl
     zlib
