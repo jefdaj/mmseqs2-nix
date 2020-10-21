@@ -4,6 +4,7 @@
 # TODO does llvmPackages.openmp have to match gcc8Stdenv on linux?
 
 { stdenv
+, gcc8Stdenv
 , bzip2
 , cmake
 , fetchurl
@@ -14,9 +15,7 @@
 }:
 
 let
-  myEnv = if pkgs.stdenv.isDarwin
-            then pkgs.llvmPackages.stdenv
-            else pkgs.gcc8Stdenv;
+  myEnv = if stdenv.isDarwin then stdenv else gcc8Stdenv;
 in
 
 myEnv.mkDerivation rec {
