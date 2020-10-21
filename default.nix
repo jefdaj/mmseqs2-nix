@@ -69,7 +69,7 @@ stdenv.mkDerivation rec {
     patchShebangs MMseqs2-${version}
   '';
   # TODO remove AVX2 stuff?
-  preConfigure = ''
-    cmakeFlags="$cmakeFlags -DCMAKE_BUILD_TYPE=RELEASE -DCMAKE_INSTALL_PREFIX=$out -DHAVE_AVX_EXTENSIONS=0 -DHAVE_AVX2_EXTENSIONS=0"
-  '';
+#   preConfigure = ''
+#     cmakeFlags="$cmakeFlags -DCMAKE_BUILD_TYPE=RELEASE -DCMAKE_INSTALL_PREFIX=$out -DHAVE_AVX_EXTENSIONS=0 -DHAVE_AVX2_EXTENSIONS=0"
+#   '';
 }
