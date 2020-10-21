@@ -4,11 +4,11 @@
 # TODO is an old version actually required by sonicparanoid?
 # TODO why is gcc8Stdenv required? maybe it has to match the llvmPackages_8.openmp version?
 
-{ llvmPackages
+{ stdenv
 , bzip2
 , cmake
 , fetchurl
-# , llvmPackages_8
+, llvmPackages # TODO remove?
 , unzip
 , xxd
 , zlib
@@ -19,7 +19,7 @@
 #   pkgs = import sources.nixpkgs {};
 # in
 
-llvmPackages.stdenv.mkDerivation rec {
+stdenv.mkDerivation rec {
   name = "mmseqs2-${version}";
 
   # version = "1-c7a89"; # version for sonicparanoid
