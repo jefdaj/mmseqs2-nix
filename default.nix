@@ -10,7 +10,7 @@
 # , llvmPackages
 # , openmpi
 # , libatomic_ops
-, perl
+# , perl
 , unzip
 , xxd
 , zlib
@@ -46,7 +46,7 @@ stdenv.mkDerivation rec {
 
   buildInputs = [
     cmake
-    perl
+    # perl
     xxd
     zlib
     bzip2.dev
