@@ -8,8 +8,10 @@
 , cmake
 , fetchurl
 , llvmPackages
+# , libatomic_ops
 , perl
 , unzip
+, xxd
 , zlib
 }:
 
@@ -44,9 +46,11 @@ stdenv.mkDerivation rec {
   buildInputs = [
     cmake
     perl
+    xxd
     zlib
-    bzip2
+    bzip2.dev
     unzip
+    # libatomic_ops
     llvmPackages.openmp
   ];
 
