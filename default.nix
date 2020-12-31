@@ -21,8 +21,7 @@ in
 
 myEnv.mkDerivation rec {
   name = "mmseqs2-${version}";
-  # version = "1-c7a89"; # old version for sonicparanoid
-  version = "12-113e3";
+  version = "6-f5a1c-nix"; # version expected by sonicparanoid, plus -nix
   src = ./.;
   buildInputs = [
     cmake
