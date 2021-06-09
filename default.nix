@@ -31,4 +31,5 @@ myEnv.mkDerivation rec {
     unzip
     llvmPackages.openmp
   ];
+  doCheck = true;
 }
